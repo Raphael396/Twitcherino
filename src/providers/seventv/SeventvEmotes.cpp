@@ -28,7 +28,7 @@ namespace {
     Url getEmoteLink(const EmoteId &id, const QString &emoteScale)
 
     {
-        const QString urlTemplate("https://cdn.7tv.dev/emote/%1/%2");
+        const QString urlTemplate("https://cdn.7tv.app/emote/%1/%2");
 
         return {urlTemplate.arg(id.string, emoteScale)};
     }

@@ -16,8 +16,8 @@ class QCheckBox;
 namespace chatterino {
 
 inline static const QString SEVENTV_USER_API =
-    "https://api.7tv.app/v2/users/%1";
-inline static const QString SEVENTV_CDR_PP = "https://cdn.7tv.app/pp/%1/%2";
+    "https://7tv.io/v2/users/%1";
+inline static const QString SEVENTV_CDR_PP = "https://cdn.7tv.dev/pp/%1/%2";
 
 class Channel;
 using ChannelPtr = std::shared_ptr<Channel>;

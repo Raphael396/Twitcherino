@@ -20,7 +20,7 @@ namespace {
 
     const QString CHANNEL_HAS_NO_EMOTES(
         "This channel has no 7TV channel emotes.");
-    const QString emoteLinkFormat("https://7tv.app/emotes/%1");
+    const QString emoteLinkFormat("https://next.7tv.dev/emotes/%1");
 
     // maximum pageSize that 7tv's API accepts
     constexpr int maxPageSize = 150;
@@ -28,7 +28,7 @@ namespace {
     Url getEmoteLink(const EmoteId &id, const QString &emoteScale)
 
     {
-        const QString urlTemplate("https://cdn.7tv.app/emote/%1/%2");
+        const QString urlTemplate("https://cdn.7tv.dev/emote/%1/%2");
 
         return {urlTemplate.arg(id.string, emoteScale)};
     }

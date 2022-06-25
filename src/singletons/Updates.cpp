@@ -254,7 +254,7 @@ void Updates::checkForUpdates()
         return;
     }
 
-    QString url = "https://api.7tv.app/v2/chatterino/version/" CHATTERINO_OS
+    QString url = "https://stage.7tv.io/v2/chatterino/version/" CHATTERINO_OS
                   "/" +
                   currentBranch();
 

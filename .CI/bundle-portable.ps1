@@ -31,11 +31,11 @@ if ($isTagged) {
     # This is a release.
     # Make sure, any existing `modes` file is overwritten for the user,
     # for example when updating from nightly to stable.
-    $bundleBaseName = "Chatterino.Portable";
+    $bundleBaseName = "Chatterino7.Portable";
 }
 else {
     Write-Output nightly >> Chatterino2/modes;
-    $bundleBaseName = "Chatterino.Nightly.Portable";
+    $bundleBaseName = "Chatterino7.Nightly.Portable";
 }
 
 if ($Env:GITHUB_OUTPUT) {

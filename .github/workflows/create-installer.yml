@@ -4,7 +4,8 @@ on:
   workflow_run:
     workflows: ["Build"]
     types: [completed]
-    #branches: [master]
+    # make sure this only runs on the default branch
+    branches: [chatterino7]
   workflow_dispatch:
 
 env:
@@ -114,19 +115,19 @@ jobs:
 
       - uses: actions/download-artifact@v3
         with:
-          name: Chatterino.Installer.exe
+          name: Chatterino7.Installer.exe
           path: build/
       - uses: actions/download-artifact@v3
         with:
-          name: Chatterino.Portable.zip
+          name: Chatterino7.Portable.zip
           path: build/
       - uses: actions/download-artifact@v3
         with:
-          name: Chatterino.Installer.EXPERIMENTAL-Qt6.exe
+          name: Chatterino7.Installer.EXPERIMENTAL-Qt6.exe
           path: build/
       - uses: actions/download-artifact@v3
         with:
-          name: Chatterino.Portable.EXPERIMENTAL-Qt6.zip
+          name: Chatterino7.Portable.EXPERIMENTAL-Qt6.zip
           path: build/
 
       - name: Download artifact
@@ -151,14 +152,14 @@ jobs:
         working-directory: build
         run: |
           ls -l
-          mv Chatterino-ubuntu-20.04-Qt-5.12.12.deb Chatterino-Ubuntu-20.04.deb
           mv Chatterino-ubuntu-22.04-Qt-5.15.2.deb Chatterino-Ubuntu-22.04.deb
-          mv Chatterino-ubuntu-22.04-Qt-6.2.4.deb EXPERIMENTAL-Chatterino-Ubuntu-22.04.deb
+          mv Chatterino-ubuntu-22.04-Qt-6.2.4.deb EXPERIMENTAL-Chatterino-Ubuntu-22.04-Qt6.deb
 
-          mv Chatterino-x86_64-5.12.12.AppImage Chatterino-x86_64.AppImage
+          mv Chatterino-x86_64-5.15.2.AppImage Chatterino-x86_64.AppImage
+          mv Chatterino-x86_64-6.2.4.AppImage EXPERIMENTAL-Chatterino-x86_64-Qt6.AppImage
 
-          mv Chatterino.Installer.EXPERIMENTAL-Qt6.exe EXPERIMENTAL-Chatterino.Qt6.Installer.exe
-          mv Chatterino.Portable.EXPERIMENTAL-Qt6.zip EXPERIMENTAL-Chatterino.Qt6.Portable.zip
+          mv Chatterino7.Installer.EXPERIMENTAL-Qt6.exe EXPERIMENTAL-Chatterino7.Qt6.Installer.exe
+          mv Chatterino7.Portable.EXPERIMENTAL-Qt6.zip EXPERIMENTAL-Chatterino7.Qt6.Portable.zip
           mv chatterino-windows-x86-64-Qt-6.5.0-symbols.pdb.7z EXPERIMENTAL-Chatterino-Windows-Qt6-debug-symbols.pdb.7z
           mv chatterino-windows-x86-64-Qt-5.15.2-symbols.pdb.7z Chatterino-Windows-debug-symbols.pdb.7z
 

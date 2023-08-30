@@ -116,6 +116,7 @@ public:
     BoolSetting enableSmoothScrolling = {"/appearance/smoothScrolling", true};
     BoolSetting enableSmoothScrollingNewMessages = {
         "/appearance/smoothScrollingNewMessages", false};
+    BoolSetting displaySevenTVPaints = {"/misc/displaySevenTVPaints", true};
     BoolSetting boldUsernames = {"/appearance/messages/boldUsernames", true};
     BoolSetting colorUsernames = {"/appearance/messages/colorUsernames", true};
     BoolSetting findAllUsernames = {"/appearance/messages/findAllUsernames",
@@ -379,6 +380,8 @@ public:
     };
     BoolSetting displaySevenTVAnimatedProfile = {
         "/misc/displaySevenTVAnimatedProfile", true};
+
+    BoolSetting enableSevenTVEventApi = {"/misc/enableSevenTVEventApi", true};
 
     IntSetting emotesTooltipPreview = {"/misc/emotesTooltipPreview", 1};
     BoolSetting openLinksIncognito = {"/misc/openLinksIncognito", 0};

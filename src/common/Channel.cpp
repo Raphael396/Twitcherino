@@ -191,6 +191,110 @@ void Channel::addOrReplaceTimeout(MessagePtr message)
     // WindowManager::instance().repaintVisibleChatWidgets(this);
 }
 
+void Channel::addOrReplaceSevenTvEventAddRemove(MessagePtr message)
+{
+    LimitedQueueSnapshot<MessagePtr> snapshot = this->getMessageSnapshot();
+    int snapshotLength = snapshot.size();
+
+    int end = std::max(0, snapshotLength - 20);
+
+    auto addMessage = true;
+    auto skip = false;
+
+    QTime minimumTime = QTime::currentTime().addSecs(-5);
+
+    MessageFlag currentFlag;
+    if (message->flags.has(MessageFlag::SevenTvEventApiAddEmoteMessage))
+    {
+        currentFlag = MessageFlag::SevenTvEventApiAddEmoteMessage;
+    }
+    else if (message->flags.has(MessageFlag::SevenTvEventApiRemoveEmoteMessage))
+    {
+        currentFlag = MessageFlag::SevenTvEventApiRemoveEmoteMessage;
+    }
+    else
+    {
+        // this case should be unreachable because this function is only called with messages which contain the above flags
+        skip = true;
+    }
+
+    if (!skip)
+    {
+        for (int i = snapshotLength - 1; i >= end; --i)
+        {
+            auto &s = snapshot[i];
+
+            if (s->parseTime < minimumTime)
+            {
+                break;
+            }
+
+            if (s->flags.has(currentFlag) && s->loginName != message->loginName)
+                break;
+
+            if (s->flags.hasAny(
+                    {MessageFlag::SevenTvEventApiAddEmoteMessage,
+                     MessageFlag::SevenTvEventApiRemoveEmoteMessage,
+                     MessageFlag::SevenTvEventApiUpdateEmoteMessage}))
+            {
+                auto found = false;
+
+                for (const auto &e1 : s->seventvEventTargetEmotes)
+                {
+                    for (const auto &e2 : message->seventvEventTargetEmotes)
+                    {
+                        if (e1 == e2)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (found)
+                        break;
+                }
+
+                if (found)
+                    break;
+            }
+
+            if (s->flags.has(currentFlag))
+            {
+                auto emotes = s->seventvEventTargetEmotes;
+                for (auto const &e : message->seventvEventTargetEmotes)
+                {
+                    emotes.push_back(e);
+                }
+
+                MessageBuilder replacement;
+                if (currentFlag == MessageFlag::SevenTvEventApiAddEmoteMessage)
+                {
+                    replacement = MessageBuilder(seventvAddEmoteMessage,
+                                                 message->loginName, emotes);
+                }
+                else if (currentFlag ==
+                         MessageFlag::SevenTvEventApiRemoveEmoteMessage)
+                {
+                    replacement = MessageBuilder(seventvRemoveEmoteMessage,
+                                                 message->loginName, emotes);
+                }
+
+                replacement->flags = message->flags;
+
+                this->replaceMessage(s, replacement.release());
+
+                addMessage = false;
+                break;
+            }
+        }
+    }
+
+    if (addMessage)
+    {
+        this->addMessage(message);
+    }
+}
+
 void Channel::disableAllMessages()
 {
     LimitedQueueSnapshot<MessagePtr> snapshot = this->getMessageSnapshot();
@@ -336,7 +440,7 @@ IndirectChannel::IndirectChannel(ChannelPtr channel, Channel::Type type)
 {
 }
 
-ChannelPtr IndirectChannel::get()
+ChannelPtr IndirectChannel::get() const
 {
     return data_->channel;
 }

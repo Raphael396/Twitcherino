@@ -174,8 +174,33 @@ set(SOURCE_FILES
 
         providers/seventv/SeventvBadges.cpp
         providers/seventv/SeventvBadges.hpp
+        providers/seventv/SeventvPaints.cpp
+        providers/seventv/SeventvPaints.hpp
         providers/seventv/SeventvEmotes.cpp
         providers/seventv/SeventvEmotes.hpp
+        providers/seventv/paints/Paint.hpp
+        providers/seventv/paints/Paint.cpp
+        providers/seventv/paints/PaintDropShadow.hpp
+        providers/seventv/paints/PaintDropShadow.cpp
+        providers/seventv/paints/LinearGradientPaint.hpp
+        providers/seventv/paints/LinearGradientPaint.cpp
+        providers/seventv/paints/RadialGradientPaint.hpp
+        providers/seventv/paints/RadialGradientPaint.cpp
+        providers/seventv/paints/UrlPaint.hpp
+        providers/seventv/paints/UrlPaint.cpp
+        providers/seventv/SeventvEventApiClient.cpp
+        providers/seventv/SeventvEventApiClient.hpp
+        providers/seventv/SeventvEventApiManager.cpp
+        providers/seventv/SeventvEventApiManager.hpp
+        providers/seventv/SeventvEventApiMessages.hpp
+        providers/seventv/SeventvEventApiWebsocket.hpp
+
+        providers/seventv/eventapimessages/EventApiMessage.cpp
+        providers/seventv/eventapimessages/EventApiMessage.hpp
+        providers/seventv/eventapimessages/EventApiEmoteUpdate.cpp
+        providers/seventv/eventapimessages/EventApiEmoteUpdate.hpp
+        providers/seventv/eventapimessages/EventApiEmoteData.cpp
+        providers/seventv/eventapimessages/EventApiEmoteData.hpp
 
         providers/bttv/BttvEmotes.cpp
         providers/bttv/BttvEmotes.hpp
@@ -400,6 +425,8 @@ set(SOURCE_FILES
         widgets/dialogs/UserInfoPopup.hpp
         widgets/dialogs/WelcomeDialog.cpp
         widgets/dialogs/WelcomeDialog.hpp
+        widgets/dialogs/switcher/NewPopupItem.cpp
+        widgets/dialogs/switcher/NewPopupItem.hpp
         widgets/dialogs/switcher/NewTabItem.cpp
         widgets/dialogs/switcher/NewTabItem.hpp
         widgets/dialogs/switcher/QuickSwitcherModel.cpp
@@ -558,7 +585,11 @@ else()
 endif()
 
 if (BUILD_APP)
-    add_executable(${EXECUTABLE_PROJECT} main.cpp)
+    if (APPLE)
+        add_executable(${EXECUTABLE_PROJECT} ${MACOS_BUNDLE_ICON_FILE} main.cpp)
+    else()
+        add_executable(${EXECUTABLE_PROJECT} main.cpp)
+    endif()
     add_sanitizers(${EXECUTABLE_PROJECT})
 
     target_include_directories(${EXECUTABLE_PROJECT} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})

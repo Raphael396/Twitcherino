@@ -15,6 +15,7 @@
 #include "providers/twitch/TwitchAccount.hpp"
 #include "providers/twitch/TwitchChannel.hpp"
 #include "providers/twitch/TwitchHelpers.hpp"
+#include "singletons/Settings.hpp"
 #include "util/Helpers.hpp"
 #include "util/PostToThread.hpp"
 
@@ -24,6 +25,7 @@
 using namespace std::chrono_literals;
 
 #define TWITCH_PUBSUB_URL "wss://pubsub-edge.twitch.tv"
+#define SEVENTV_EVENTAPI_URL "wss://events.7tv.app/v1/channel-emotes"
 
 namespace chatterino {
 
@@ -36,6 +38,15 @@ TwitchIrcServer::TwitchIrcServer()
     this->initializeIrc();
 
     this->pubsub = new PubSub(TWITCH_PUBSUB_URL);
+
+    if (getSettings()->enableSevenTVEventApi)
+    {
+        this->eventApi = new SeventvEventApi(SEVENTV_EVENTAPI_URL);
+    }
+    else
+    {
+        this->eventApi = nullptr;
+    }
 
     // getSettings()->twitchSeperateWriteConnection.connect([this](auto, auto) {
     // this->connect(); },

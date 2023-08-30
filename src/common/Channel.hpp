@@ -74,6 +74,7 @@ public:
         boost::optional<MessageFlags> overridingFlags = boost::none);
     void addMessagesAtStart(std::vector<MessagePtr> &messages_);
     void addOrReplaceTimeout(MessagePtr message);
+    void addOrReplaceSevenTvEventAddRemove(MessagePtr message);
     void disableAllMessages();
     void replaceMessage(MessagePtr message, MessagePtr replacement);
     void replaceMessage(size_t index, MessagePtr replacement);
@@ -125,7 +126,7 @@ public:
     IndirectChannel(ChannelPtr channel,
                     Channel::Type type = Channel::Type::Direct);
 
-    ChannelPtr get();
+    ChannelPtr get() const;
     void reset(ChannelPtr channel);
     pajlada::Signals::NoArgSignal &getChannelChanged();
     Channel::Type getType();

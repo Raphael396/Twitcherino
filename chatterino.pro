@@ -211,9 +211,19 @@ SOURCES += \
     src/providers/irc/IrcServer.cpp \
     src/providers/IvrApi.cpp \
     src/providers/LinkResolver.cpp \
+    src/providers/seventv/paints/LinearGradientPaint.cpp \
+    src/providers/seventv/paints/Paint.cpp \
+    src/providers/seventv/paints/PaintDropShadow.cpp \
+    src/providers/seventv/paints/RadialGradientPaint.cpp \
+    src/providers/seventv/paints/UrlPaint.cpp \
     src/providers/seventv/SeventvBadges.cpp \
     src/providers/seventv/SeventvEmotes.cpp \
-    src/providers/seventv/SeventvWebSocket.cpp \
+    src/providers/seventv/SeventvPaints.cpp \
+    src/providers/seventv/SeventvEventApiClient.cpp \
+    src/providers/seventv/SeventvEventApiManager.cpp \
+    src/providers/seventv/eventapimessages/EventApiMessage.cpp \
+    src/providers/seventv/eventapimessages/EventApiEmoteData.cpp \
+    src/providers/seventv/eventapimessages/EventApiEmoteUpdate.cpp \
     src/providers/twitch/api/Helix.cpp \
     src/providers/twitch/ChannelPointReward.cpp \
     src/providers/twitch/IrcMessageHandler.cpp \
@@ -292,6 +302,7 @@ SOURCES += \
     src/widgets/dialogs/SelectChannelDialog.cpp \
     src/widgets/dialogs/SelectChannelFiltersDialog.cpp \
     src/widgets/dialogs/SettingsDialog.cpp \
+    src/widgets/dialogs/switcher/NewPopupItem.cpp \
     src/widgets/dialogs/switcher/NewTabItem.cpp \
     src/widgets/dialogs/switcher/QuickSwitcherModel.cpp \
     src/widgets/dialogs/switcher/QuickSwitcherPopup.cpp \
@@ -470,9 +481,21 @@ HEADERS += \
     src/providers/irc/IrcServer.hpp \
     src/providers/IvrApi.hpp \
     src/providers/LinkResolver.hpp \
+    src/providers/seventv/paints/LinearGradientPaint.hpp \
+    src/providers/seventv/paints/Paint.hpp \
+    src/providers/seventv/paints/PaintDropShadow.hpp \
+    src/providers/seventv/paints/RadialGradientPaint.hpp \
+    src/providers/seventv/paints/UrlPaint.hpp \
     src/providers/seventv/SeventvBadges.hpp \
     src/providers/seventv/SeventvEmotes.hpp \
-    src/providers/seventv/SeventvWebSocket.hpp \
+    src/providers/seventv/SeventvPaints.hpp \
+    src/providers/seventv/SeventvEventApiClient.hpp \
+    src/providers/seventv/SeventvEventApiManager.hpp \
+    src/providers/seventv/SeventvEventApiMessages.hpp \
+    src/providers/seventv/SeventvEventApiWebsocket.hpp \
+    src/providers/seventv/eventapimessages/EventApiMessage.hpp \
+    src/providers/seventv/eventapimessages/EventApiEmoteUpdate.hpp \
+    src/providers/seventv/eventapimessages/EventApiEmoteData.hpp \
     src/providers/twitch/api/Helix.hpp \
     src/providers/twitch/ChannelPointReward.hpp \
     src/providers/twitch/ChatterinoWebSocketppLogger.hpp \
@@ -576,6 +599,7 @@ HEADERS += \
     src/widgets/dialogs/SelectChannelFiltersDialog.hpp \
     src/widgets/dialogs/SettingsDialog.hpp \
     src/widgets/dialogs/switcher/AbstractSwitcherItem.hpp \
+    src/widgets/dialogs/switcher/NewPopupItem.hpp \
     src/widgets/dialogs/switcher/NewTabItem.hpp \
     src/widgets/dialogs/switcher/QuickSwitcherModel.hpp \
     src/widgets/dialogs/switcher/QuickSwitcherPopup.hpp \

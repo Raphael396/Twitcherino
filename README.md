@@ -1,19 +1,16 @@
-![alt text](https://i.ibb.co/n0WdZLK/Bild-2023-08-30-130431198-removebg-preview.png)
+![alt text](https://i.ibb.co/Tq8P20p/Bild-2023-08-30-130550338-removebg-preview.png)
 Twitcherino 1 [![GitHub Actions Build (Windows, Ubuntu, MacOS)](https://github.com/Chatterino/chatterino2/workflows/Build/badge.svg?branch=master)](https://github.com/Chatterino/chatterino2/actions?query=workflow%3ABuild+branch%3Amaster) [![Cirrus CI Build (FreeBSD only)](https://api.cirrus-ci.com/github/Chatterino/chatterino2.svg?branch=master)](https://cirrus-ci.com/github/Chatterino/chatterino2/master) [![Chocolatey Package](https://img.shields.io/chocolatey/v/chatterino?include_prereleases)](https://chocolatey.org/packages/chatterino) [![Flatpak Package](https://img.shields.io/flathub/v/com.chatterino.chatterino)](https://flathub.org/apps/details/com.chatterino.chatterino)
 ============
 
-Chatterino 2 is a chat client for [Twitch.tv](https://twitch.tv).
-The Chatterino 2 wiki can be found [here](https://wiki.chatterino.com).
-Contribution guidelines can be found [here](https://wiki.chatterino.com/Contributing%20for%20Developers).
+Twitcherino 1 is a chat client for [Twitch.tv](https://twitch.tv).
 
 ## Download
 
-Current releases are available at [https://chatterino.com](https://chatterino.com).
-Windows users can also install Chatterino [from Chocolatey](https://chocolatey.org/packages/chatterino).
+Current releases are available at [https://github.com](https://github.ccom/raphael065).
 
 ## Nightly build
 
-You can download the latest Chatterino 2 build over [here](https://github.com/Chatterino/chatterino2/releases/tag/nightly-build)
+You can download the latest Chatterino 2 build over [here](https://github.com/raphael065/twitcherino/releases/tag/nightly-build)
 
 You might also need to install the [VC++ Redistributables](https://aka.ms/vs/17/release/vc_redist.x64.exe) from Microsoft if you do not have it installed already.  
 If you still receive an error about `MSVCR120.dll missing`, then you should install the [VC++ 2013 Restributable](https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x64.exe).
@@ -60,6 +57,3 @@ The code is formatted using clang format in Qt Creator. [.clang-format](src/.cla
 
 Qt creator should now format the documents when saving it.
 
-## Doxygen
-
-Doxygen is used to generate project information daily and is available [here](https://doxygen.chatterino.com).
